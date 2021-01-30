@@ -3,8 +3,10 @@ clear;
 
 A = zeros(5,5); % initializing the A matrix
 
-for j=1:5
-    A(:,j) = sin(1:5).*cos(1:5); % substituting the values
+for i = 1:5
+    for j=1:5
+        A(i,j) = sin(i)*cos(j); % substituting the values
+    end
 end
 
 syms x;
@@ -15,10 +17,12 @@ polyA = charpoly(A,x); % charactyeristic polynomial of the matrix
 
 v(:,1)
 
-for i=1:5
-fprintf('\\begin{bmatrix} \n');
-fprintf('%0.4f\\\\ ', v(:,i));
-fprintf('\n \\end{bmatrix},\n');
+for j=1:5
+    fprintf('\\begin{bmatrix} \n');
+    for i=1:5
+        fprintf('%0.4f + %0.4fi\\\\ ', real(v(i,j)), imag(v(i,j)));
+    end
+    fprintf('\n \\end{bmatrix},\n');
 end
 
 i =1
